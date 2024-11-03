@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digital Clock</title>
+    <style>
+        body{
+            background-color: black;
+        }
+        .Clock{
+            position:absolute;
+            color:lime;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            font-size:xx-large;
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            letter-spacing: 8px;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="Digital_Clock" class="Clock"></div>
+    <script type="text/javascript">
+      function showTime() {
+        var date = new Date(); //this is the date object which fetches the minutes hours and seconds for the digital clock
+        var hours = date.getHours(); // this will fetch the hour from the date object
+        var minutes = date.getMinutes(); //this will fetch the minutes from the date object
+        var seconds = date.getSeconds(); //this will fetch the seconds from the date object
+
+        var session = "AM";
+        if (hours==0){
+            hours=12; //12 hour format
+        }
+        if (hours>12){
+            hours=hours-12; //12 hour format
+            session="PM";
+        }
+        // if (hours<10){
+        //     hours="0"+hours;
+        // }
+        // if (minutes<10){
+        //     minutes="0"+minutes;
+        // }
+        // if (seconds<10){
+        //     seconds="0"+seconds;
+        // }
+
+
+        // using ternary operator 
+
+        hours = (hours<10)?"0"+hours:hours;
+        minutes = (minutes<10)?"0"+minutes:minutes;
+        seconds = (seconds<10)?"0"+seconds:seconds;
+
+        document.getElementById("Digital_Clock").innerHTML =
+          hours + ":" + minutes + ":" + seconds + " " +  session;
+        setTimeout(showTime,1000);
+      }
+      showTime();
+    </script>
+  </body>
+</html>
